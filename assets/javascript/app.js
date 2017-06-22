@@ -55,7 +55,6 @@ $( document ).ready( function() {
 
 		//console.log(term)
 		var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=3baa8cba285e47bbb0176e1e7702df66&q=" + term + "&begin_date=" + startY + "0101&end_date=" + endY + "1231";
-		//var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=3baa8cba285e47bbb0176e1e7702df66&q=" + term + "&begin_date=19950101&end_date=20170101"
 
 		$.ajax({
 		  url: url,
