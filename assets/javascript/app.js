@@ -1,7 +1,28 @@
-//Place this functionality inside search button click event. 
+// Set this variable equal to the number of results requested.
+var resultsRequested;
 
-	// Set this variable equal to the number of results requested.
-	var resultsRequested;
+// Click events for search number
+$( document ).ready(function() {
+    $( "#searchOne" ).click(function() {
+  		resultsRequested = 1;
+	});
+
+	$( "#searchFive" ).click(function() {
+  		resultsRequested = 5;
+	});
+
+	$( "#searchTen" ).click(function() {
+  		resultsRequested = 10;
+	});
+
+	$( "#searchFifteen" ).click(function() {
+  		resultsRequested = 15;
+	});
+});
+
+
+
+//Place this functionality inside search button click event. 
 
 	// This for loop then generates the correct number of article thumbnails
 	for (var i = 0; i < resultsRequested; i++){
