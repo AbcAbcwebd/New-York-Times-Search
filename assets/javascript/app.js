@@ -1,23 +1,32 @@
 // Set this variable equal to the number of results requested.
 var resultsRequested;
 
+
+
 // Click events for search number
-$( document ).ready(function() {
-    $( "#searchOne" ).click(function() {
-  		resultsRequested = 1;
-	});
+$( document )
+	.ready( function() {
+		$( "#searchOne" ).on("click", function()  {
+				resultsRequested = 1;
+				$("#searchNumTop").html( "1" );
+			} );
 
-	$( "#searchFive" ).click(function() {
-  		resultsRequested = 5;
-	});
+		$( "#searchFive" ).on("click", function()  {
+				resultsRequested = 5;
+				$( "#searchNumTop" ).html( "5" );
+			} );
 
-	$( "#searchTen" ).click(function() {
-  		resultsRequested = 10;
-	});
+		$( "#searchTen" ).on("click", function()  {
+				resultsRequested = 10;
+				$( "#searchNumTop" ).html( "10" );
+			} );
 
-	$( "#searchFifteen" ).click(function() {
-  		resultsRequested = 15;
-	});
+		$( "#searchFifteen" ).on("click", function() {
+				resultsRequested = 15;
+				$( "#searchNumTop" )
+					.html( "15" );
+			} );
+	} );
 
 	// This click event should contain the AJAX call. 
 	$( "#searchBtn" ).click(function() {
@@ -73,6 +82,8 @@ $( document ).ready(function() {
 		});
 	});
 
+
 });
 
-	});
+});
+
