@@ -30,39 +30,49 @@ $( document ).ready( function() {
 	// This click event should contain the AJAX call. 
 	$( "#searchBtn" ).click(function() {
 
+		$('#articlePanel').empty();
+
 		// ADD AJAX CALL HERE
-		var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+		/* var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 		url += '?' + $.param({
 		  'api-key': "3baa8cba285e47bbb0176e1e7702df66",
 		  'q': "isis",
 		  'begin_date': "19950101",
 		  'end_date': "20170101"
-		});
+		}); */
+		//console.log(url)
+		var term = $('#searchTerm').val();
+		var startY = $('#startYear').val();
+		var endY = $('#endYear').val();
+
+		// This should be unnecesary, but it's a work around for more complicated coding. (See above commented out part.)
+		if (startY.length < 4){
+			startY = 1800;
+		}
+		if (endY.length < 4){
+			endY = 2017;
+		}
+
+		//console.log(term)
+		var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=3baa8cba285e47bbb0176e1e7702df66&q=" + term + "&begin_date=" + startY + "0101&end_date=" + endY + "1231";
+		//var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=3baa8cba285e47bbb0176e1e7702df66&q=" + term + "&begin_date=19950101&end_date=20170101"
+
 		$.ajax({
 		  url: url,
 		  method: 'GET',
 		}).done(function(response) {
 
-			console.log(response)
-
-
-			console.log(resultsRequested)
-
 			// This for loop then generates the correct number of article thumbnails
 			for (var i = 0; i < resultsRequested; i++){
-				console.log(response)
-				console.log("Iteration: " + i)
 
 				var articleTitle = response.response.docs[i].headline.main; 
-				console.log(articleTitle)
+				// Not all NY Times articles include a by line. This if statement helps avoid an error.
 				if (response.response.docs[i].byline != null){
 			    	var articleAuthor = response.response.docs[i].byline.original;
 			    };
 			    var articleSection = response.response.docs[i].section_name;
-			    console.log("Article section: " + articleSection)
 			    var articleTimePublished = response.response.docs[i].pub_date;
 			    var articleLink = response.response.docs[i].source;
-			    console.log("Article link: " + articleLink)
 
 				// This part then generates the necesary HTML elements. 
 				var articleThumbnail = $('<div>');
@@ -77,7 +87,6 @@ $( document ).ready( function() {
 				var thumbnailLink = $('<link>').text(articleLink);
 			//	thumbnailLink.attr('href', articleLink);
 				articleThumbnail.append(thumbnailLink);
-				console.log(articleThumbnail)
 
 				// ADD CODE HERE TO APPEND articleThumbnail TO CHRIS'S HOLDER DIV
 				$('#articlePanel').append(articleThumbnail);
