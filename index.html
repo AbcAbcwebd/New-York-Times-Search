@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+    <script src="assets/javascript/app.js">
+	</script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+	<link href="https://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+	<title>NYT Search</title>
+</head>
+
+<! ids
+
+searchTerm
+
+searchNumTop
+    searchOne
+    searchFive
+    searchTen
+    searchFifteen
+
+startYear
+
+endYear
+
+searchBtn
+
+clearBtn
+
+articlePanel
+
+>
+
+<body>
+	<header>
+		<div class="jumbotron text-center">
+			<h1>New York Times Search</h1>
+		</div>
+	</header>
+
+
+	<div class="container" id="search-box">
+		<div class="row">
+			<form class="form-horizontal">
+				<fieldset>
+					<legend>Search Parameters</legend>
+
+					<div class="form-group">
+						<label class="col-lg-2 control-label" for="searchTerm">Search Term</label>
+
+						<div class="col-lg-10">
+							<input class="form-control" id="searchTerm" placeholder="New York Times Search" type="text">
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label class="col-lg-2 control-label" for="recordNumber">Number of Records to Retrieve</label>
+
+						<div class="col-lg-10">
+							<div class="btn-group">
+								<a class="btn btn-default" id="searchNumTop">Records</a> <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+
+								<ul class="dropdown-menu">
+									<li id="searchOne">
+										<a href="#">1</a>
+									</li>
+
+
+									<li  id="searchFive">
+										<a href="#">5</a>
+									</li>
+
+
+									<li id="searchTen">
+										<a href="#">10</a>
+									</li>
+
+
+									<li id="searchFifteen">
+										<a href="#">15</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<label class="col-lg-2 control-label" for="startYear">Search Term</label>
+
+						<div class="col-lg-10">
+							<input class="form-control" id="startYear" placeholder="1999" type="text">
+						</div>
+						<label class="col-lg-2 control-label" for="endYear">Search Term</label>
+
+						<div class="col-lg-10">
+							<input class="form-control" id="endYear" placeholder="2100" type="text">
+						</div>
+
+
+						<div class="col-lg-10 col-lg-offset-2">
+							<button class="btn btn-default" id="searchBtn" type="reset">Search!</button> 
+                            <button class="btn btn-primary" id="clearBtn" type="submit">Clear Results</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Top Articles</h3>
+				</div>
+
+
+				<div class="panel-body" id="articlePanel">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
