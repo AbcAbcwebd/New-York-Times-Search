@@ -23,38 +23,56 @@ $( document ).ready(function() {
 	$( "#searchBtn" ).click(function() {
 
 		// ADD AJAX CALL HERE
+		$(function(){
+		    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+			url += '?' + $.param({
+		   'api-key': "80570bce76134579ab6dc9b124a2a80e"
+		});
+		  
+		$.ajax({
+		      url: url,
+		      method: "GET"
+		}).done(function(response) {
+
+			console.log(response)
 
 
-		//Place this functionality inside search button click event. 
+			//Place this functionality inside search button click event. 
 
-		// This for loop then generates the correct number of article thumbnails
-		for (var i = 0; i < resultsRequested; i++){
+			// This for loop then generates the correct number of article thumbnails
+			for (var i = 0; i < resultsRequested; i++){
+				$('#articlePanel').append('<p>articleThumbnail</p>');
 
-			// Set these variables equal to the different values found in Curtis's AJAX call. 
-			var articleTitle;
-			var articleAuthor;
-			var articleSection;
-			var articleTimePublished;
-			var articleLink;
+				var articleTitle = response.response.docs[i].headline.main;   
+			    var articleAuthor = response.response.docs[i].byline.original;
+			    /*description*/ // console.log(response.response.docs[i].snippet);
 
-			// This part then generates the necesary HTML elements. 
-			var articleThumbnail = $('div');
-			var thumbnailTitle = $('h2').text(articleTitle);
-			articleThumbnail.append(thumbnailTitle);
-			var thumbnailAuthor = $('p').text(articleAuthor);
-			articleThumbnail.append(thumbnailAuthor);
-			var thumbnailSection = $('p').text(articleSection);
-			articleThumbnail.append(thumbnailSection);
-			var thumbnailTimePublished = $('p').text(articleTimePublished);
-			articleThumbnail.append(thumbnailTimePublished);
-			var thumbnailLink = $('link').text(articleLink);
-			thumbnailLink.attr('href', articleLink);
-			articleThumbnail.append(thumbnailLink);
+			    var articleSection = response.response.docs[i].section_name;
+			    var articleTimePublished = response.response.docs[i].pub_date;
+			    var articleLink = response.response.docs[i].source;
 
-			// ADD CODE HERE TO APPEND articleThumbnail TO CHRIS'S HOLDER DIV
-			$('#articlePanel').append(articleThumbnail);
-			
-		};
+				// This part then generates the necesary HTML elements. 
+				var articleThumbnail = $('div');
+				var thumbnailTitle = $('h2').text(articleTitle);
+				articleThumbnail.append(thumbnailTitle);
+				var thumbnailAuthor = $('p').text(articleAuthor);
+				articleThumbnail.append(thumbnailAuthor);
+				var thumbnailSection = $('p').text(articleSection);
+				articleThumbnail.append(thumbnailSection);
+				var thumbnailTimePublished = $('p').text(articleTimePublished);
+				articleThumbnail.append(thumbnailTimePublished);
+				var thumbnailLink = $('link').text(articleLink);
+				thumbnailLink.attr('href', articleLink);
+				articleThumbnail.append(thumbnailLink);
+
+				// ADD CODE HERE TO APPEND articleThumbnail TO CHRIS'S HOLDER DIV
+				$('#articlePanel').append('<p>articleThumbnail</p>');
+
+				
+			};
+		});
 	});
 
 });
+
+	});
